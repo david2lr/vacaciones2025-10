@@ -23,6 +23,8 @@
     }
     section.active {
       display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* para que no se centre raro */
       justify-content: center;
       align-items: center;
     }
@@ -133,6 +135,19 @@
       opacity: 0.3;
       cursor: not-allowed;
     }
+    .map-container {
+      width: 90%;          /* 👈 ocupa el 90% del ancho de la pantalla */
+      margin: 16px auto;   /* lo centra horizontalmente */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;   /* el iframe se adapta al contenedor */
+      height: 600px; /* ajusta a lo que necesites */
+      display: block;
+    }
     @media (orientation: portrait) {
       .calendar {
         display: grid;
@@ -144,6 +159,19 @@
 
       .calendar .day {
         width: 100%; /* cada día ocupa la columna del grid */
+      }
+      .map-container {
+        width: 90%;          /* 👈 ocupa el 90% del ancho de la pantalla */
+        margin: 16px auto;   /* lo centra horizontalmente */
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+
+      .map-container iframe {
+        width: 100%;   /* el iframe se adapta al contenedor */
+        height: 400px; /* ajusta a lo que necesites */
+        display: block;
       }
     }
     /* Landscape: ajustar al ancho de pantalla, sin scroll */
@@ -162,6 +190,16 @@
   <!-- SECCIÓN PRINCIPAL -->
   <section id="calendar-section" class="active">
     <div class="calendar" id="calendar"></div>
+    <!-- Mapa debajo del grid -->
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/d/embed?mid=1FiB47bjFfzB-OTASZuibFMIalbctO6s&ehbc=2E312F" 
+        width="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
   </section>
 
   <!-- SECCIÓN DETALLE -->
@@ -181,43 +219,43 @@
       //{ date: "2025-10-01", label: "Mié 01", active: false },
       //{ date: "2025-10-02", label: "Jue 02", active: false },
       { date: "2025-10-03", label: "Vie 03", active: true, dayNumber: 1, slots: [
-        "Oporto/Venecia",
-        "Vuelo ✈️ OPO → TSF 06:10 PT - 09:50",
-        "Coger coche y conducir a Liubliana (Eslovenia) ~3h",
-        "Tarde: Paseo por las orillas del río Ljubljanica y colinas cercanas",
-        "Dormir en Liubliana: Hotel City o similar"
+        "Oporto/Venecia/Piran",
+        "Vuelo ✈️ OPO → TSF 06:10* - 09:50\nCoger coche y conducir a Piran (Eslovenia) [~2h30min]",
+        "Comer en Piran",
+        "Callejear por Piran\nIr a Liubliana [~1h30min] (podemos ir a alguna cueva que nos queda de camino)",
+        "Dormir en Liubliana"
       ]},
 
       { date: "2025-10-04", label: "Sáb 04", active: true, dayNumber: 2, slots: [
         "Liubliana",
-        "Mañana: Excursión a Lago Bled, paseo y caminata por los alrededores",
-        "Comida picnic o restaurante cercano al lago",
-        "Tarde: Ruta a pie por la zona de los Alpes Julianos cercanos",
-        "Dormir en Bled: Hotel Park Bled o similar"
+        "Callejear por Liubliana",
+        "Comida en Liubliana",
+        "Callejear por Liubliana\nIr a Bled [~50min]",
+        "Dormir en Bled"
       ]},
 
       { date: "2025-10-05", label: "Dom 05", active: true, dayNumber: 3, slots: [
         "Bled",
-        "Mañana: Paseo en barca por la isla de Bled y caminata por los alrededores",
-        "Comida en Bled",
-        "Tarde: Conducción hacia Bohinj y caminata por el Parque Nacional Triglav",
-        "Dormir en Bohinj: Hotel Jezero o similar"
+        "Excursión a Lago Bled, paseo y caminata por los alrededores",
+        "Comida picnic o restaurante cercano al lago",
+        "Ruta a pie por la zona de los Alpes Julianos cercanos\nGarganta Vintgar\nConducir a Bohinj (~20min)",
+        "Dormir en Bohinj"
       ]},
 
       { date: "2025-10-06", label: "Lun 06", active: true, dayNumber: 4, slots: [
-        "Bohinj / Valle de Soča",
-        "Mañana: Ruta de senderismo por el Valle de Soča",
-        "Comida picnic en la naturaleza",
-        "Tarde: Visita a cascada Kozjak y caminata por senderos cercanos",
-        "Dormir en Tolmin o Kobarid: Hotel Hvala o similar"
+        "Bled/Bohinj",
+        "(Garganta Vintgar)\nConducción hacia Bohinj",
+        "Comida en Bohinj",
+        "Caminata por el Parque Nacional Triglav",
+        "Dormir en Bohinj"
       ]},
 
       { date: "2025-10-07", label: "Mar 07", active: true, dayNumber: 5, slots: [
-        "Eslovenia → Venecia",
-        "Mañana: Salida temprano hacia Venecia (~3h)",
-        "Comida en ruta o en Mestre",
-        "Tarde: Paseo por la Laguna y zonas verdes alrededor de Mestre",
-        "Dormir en Venecia Mestre: cerca de la estación de tren"
+        "Bohinj / Valle de Soča",
+        "Mañana: Ruta de senderismo por el Valle de Soča",
+        "Comida picnic en la naturaleza",
+        "Tarde: Visita a cascada Kozjak y caminata por senderos cercanos\nIr a Venecia",
+        "Dormir en Tolmin o Kobarid"
       ]},
 
       { date: "2025-10-08", label: "Mié 08", active: true, dayNumber: 6, slots: [
@@ -238,7 +276,15 @@
 
       { date: "2025-10-10", label: "Vie 10", active: true, dayNumber: 8, slots: [
         "Venecia/Oporto",
-        "Vuelo ✈️ TSF → OPO 10:20 - 12:15 PT",
+        "Vuelo ✈️ TSF → OPO 10:20 - 12:15*",
+        "-",
+        "-",
+        "-"
+      ]},
+
+      { date: "2025-10-11", label: "Notas", active: true, dayNumber: 9, slots: [
+        "Comida",
+        "Entre los platos que más triunfan econtramos: kranjska klobasa (salchicha ahumada), bograč (parecido al famoso gulash húngaro), idrijski žlikrofi (bolsitas de masa rellenas) y el postre por excelencia, kremna rezina (una especie de milhojas con mucha crema). La polenta como acompañamiento. Además, en Liubliana hacen unos helados de infarto, no dejéis de probarlos",
         "-",
         "-",
         "-"
